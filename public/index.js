@@ -371,8 +371,7 @@ const isDirective = o => {
 };
 
 const isCEPolyfill = window.customElements !== undefined && window.customElements.polyfillWrapFlushCallback !== undefined;
-const removeNodes = function removeNodes(container, start) {
-  let end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+const removeNodes = (container, start, end = null) => {
   while (start !== end) {
     const n = start.nextSibling;
     container.removeChild(start);
@@ -796,8 +795,7 @@ class NodePart {
       this.clear(itemPart && itemPart.endNode);
     }
   }
-  clear() {
-    let startNode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.startNode;
+  clear(startNode = this.startNode) {
     removeNodes(this.startNode.parentNode, startNode.nextSibling, this.endNode);
   }
 }
@@ -979,12 +977,7 @@ const render = (result, container, options) => {
 };
 
 (window['litHtmlVersions'] || (window['litHtmlVersions'] = [])).push('1.1.1');
-const html = function html(strings) {
-  for (var _len = arguments.length, values = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    values[_key - 1] = arguments[_key];
-  }
-  return new TemplateResult(strings, values, 'html', defaultTemplateProcessor);
-};
+const html = (strings, ...values) => new TemplateResult(strings, values, 'html', defaultTemplateProcessor);
 
 const walkerNodeFilter = 133;
 function removeNodesFromTemplate(template, nodesToRemove) {
@@ -1027,8 +1020,7 @@ const countNodes = node => {
   }
   return count;
 };
-const nextActiveIndexInTemplateParts = function nextActiveIndexInTemplateParts(parts) {
-  let startIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
+const nextActiveIndexInTemplateParts = (parts, startIndex = -1) => {
   for (let i = startIndex + 1; i < parts.length; i++) {
     const part = parts[i];
     if (isTemplatePartActive(part)) {
@@ -1037,8 +1029,7 @@ const nextActiveIndexInTemplateParts = function nextActiveIndexInTemplateParts(p
   }
   return -1;
 };
-function insertNodeIntoTemplate(template, node) {
-  let refNode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+function insertNodeIntoTemplate(template, node, refNode = null) {
   const {element: {content}, parts} = template;
   if (refNode === null || refNode === undefined) {
     content.appendChild(node);
@@ -1252,8 +1243,7 @@ class UpdatingElement extends HTMLElement {
       }
     }
   }
-  static createProperty(name) {
-    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultPropertyDeclaration;
+  static createProperty(name, options = defaultPropertyDeclaration) {
     this._ensureClassProperties();
     this._classProperties.set(name, options);
     if (options.noAccessor || this.prototype.hasOwnProperty(name)) {
@@ -1296,8 +1286,7 @@ class UpdatingElement extends HTMLElement {
     const attribute = options.attribute;
     return attribute === false ? undefined : typeof attribute === 'string' ? attribute : typeof name === 'string' ? name.toLowerCase() : undefined;
   }
-  static _valueHasChanged(value, old) {
-    let hasChanged = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : notEqual;
+  static _valueHasChanged(value, old, hasChanged = notEqual) {
     return hasChanged(value, old);
   }
   static _propertyValueFromAttribute(value, options) {
@@ -1348,8 +1337,7 @@ class UpdatingElement extends HTMLElement {
       this._attributeToProperty(name, value);
     }
   }
-  _propertyToAttribute(name, value) {
-    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultPropertyDeclaration;
+  _propertyToAttribute(name, value, options = defaultPropertyDeclaration) {
     const ctor = this.constructor;
     const attr = ctor._attributeNameForProperty(name, options);
     if (attr !== undefined) {
@@ -1566,17 +1554,13 @@ const textFromCSSResult = value => {
             take care to ensure page security.`);
   }
 };
-const css = function css(strings) {
-  for (var _len = arguments.length, values = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    values[_key - 1] = arguments[_key];
-  }
+const css = (strings, ...values) => {
   const cssText = values.reduce((acc, v, idx) => acc + textFromCSSResult(v) + strings[idx + 1], strings[0]);
   return new CSSResult(cssText, constructionToken);
 };
 
 (window['litElementVersions'] || (window['litElementVersions'] = [])).push('2.2.0');
-function arrayFlat(styles) {
-  let result = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+function arrayFlat(styles, result = []) {
   for (let i = 0, length = styles.length; i < length; i++) {
     const value = styles[i];
     if (Array.isArray(value)) {
@@ -1664,8 +1648,8 @@ LitElement.render = render$1;
 
 let MyApp = _decorate([customElement('my-app')], function (_initialize, _LitElement) {
   class MyApp extends _LitElement {
-    constructor() {
-      super(...arguments);
+    constructor(...args) {
+      super(...args);
       _initialize(this);
     }
   }
