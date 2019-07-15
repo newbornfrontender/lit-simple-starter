@@ -5,7 +5,7 @@
   "author": "Infant Frontender <newbornfrontender@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "format": "prettier --write **/*.{js,json,md}",
+    "format": "prettier --write **/*.{html,js,json,md}",
     "build": "rollup -c"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "prettier": "^1.18.2",
     "rollup": "^1.16.7",
     "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-index-html": "^1.4.2",
     "rollup-plugin-node-resolve": "^5.2.0"
   }
 }
