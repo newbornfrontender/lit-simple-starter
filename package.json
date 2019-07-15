@@ -1,0 +1,32 @@
+{
+  "name": "lit-simple-starter",
+  "version": "1.0.0",
+  "repository": "git@github.com:newbornfrontender/lit-simple-starter.git",
+  "author": "Infant Frontender <newbornfrontender@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write **/*.{js,json,md}",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.0",
+    "lit-html": "^1.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-private-methods": "^7.4.4",
+    "@babel/preset-env": "^7.5.4",
+    "astring": "^1.4.0",
+    "deasync": "^0.1.15",
+    "estree-walker": "^0.6.1",
+    "postcss": "^7.0.17",
+    "postcss-load-config": "^2.1.0",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^1.18.2",
+    "rollup": "^1.16.7",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  }
+}
