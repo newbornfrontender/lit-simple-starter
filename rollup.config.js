@@ -1,7 +1,7 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 
-import postcssInJs from './pugins/postcss-in-js';
+import postcssInJs from './plugins/postcss-in-js';
 
 const production = !process.env.ROLLUP_WATCH;
 
